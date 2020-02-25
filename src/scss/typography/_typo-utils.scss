@@ -1,34 +1,34 @@
 // main FN for fetching nested map data
-@function get-type-value($config, $level, $name) {
-    @return map-get(map-get($config, $level), $name);
+@function get-type-value($config, $mapKey, $name) {
+    @return map-get(map-get($config, $mapKey), $name);
 }
   
 // Fetches the font size for a level inside a typography config.
-@function font-size($config, $level) {
-    @return get-type-value($config, $level, font-size);
+@function font-size($config, $mapKey) {
+    @return get-type-value($config, $mapKey, font-size);
 }
 
 // Fetches the line height for a level inside a typography config.
-@function line-height($config, $level) {
-    @return get-type-value($config, $level, line-height);
+@function line-height($config, $mapKey) {
+    @return get-type-value($config, $mapKey, line-height);
 }
 
 // Fetches the font weight for a level inside a typography config.
-@function font-weight($config, $level) {
-    @return get-type-value($config, $level, font-weight);
+@function font-weight($config, $mapKey) {
+    @return get-type-value($config, $mapKey, font-weight);
 }
 
 // Fetches the letter spacing for a level inside a typography config.
-@function letter-spacing($config, $level) {
-    @return get-type-value($config, $level, letter-spacing);
+@function letter-spacing($config, $mapKey) {
+    @return get-type-value($config, $mapKey, letter-spacing);
 }
 
 // Fetches the font-family from a typography config and removes the quotes around it.
-@function font-family($config, $level: null) {
+@function font-family($config, $mapKey: null) {
     $font-family: map-get($config, font-family);
 
-    @if $level != null {
-        $font-family: get-type-value($config, $level, font-family);
+    @if $mapKey != null {
+        $font-family: get-type-value($config, $mapKey, font-family);
     }
 
     // Guard against unquoting non-string values, because it's deprecated.
@@ -63,13 +63,13 @@
 }
 
 // Converts a typography level into CSS styles.
-@mixin typography-level-to-styles($config, $level) {
-    $font-size: font-size($config, $level);
-    $font-weight: font-weight($config, $level);
-    $line-height: line-height($config, $level);
-    $font-family: font-family($config, $level);
+@mixin typography-level-to-styles($config, $mapKey) {
+    $font-size: font-size($config, $mapKey);
+    $font-weight: font-weight($config, $mapKey);
+    $line-height: line-height($config, $mapKey);
+    $font-family: font-family($config, $mapKey);
 
     @include typography-font-shorthand($font-size, $font-weight, $line-height, $font-family);
-    letter-spacing: letter-spacing($config, $level);
+    letter-spacing: letter-spacing($config, $mapKey);
 }
   

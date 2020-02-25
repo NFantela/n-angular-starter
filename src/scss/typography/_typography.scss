@@ -1,0 +1,14 @@
+@import './typo-config';
+// other module specific imports e.g. demo-badge
+@import '../../app/shared/demo-badge-module/demo-badge-theme';
+
+// Includes all of the typographic styles.
+@mixin create-typography($config: null) {
+    @if $config == null {
+      $config: get-typography-config();
+    }
+    // base typography from config file
+    @include create-base-typography($config);
+    // rest of typography rules from modules / directives e.g. badge
+    @include demo-badge-typography($config);
+}

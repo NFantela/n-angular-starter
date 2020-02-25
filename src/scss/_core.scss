@@ -1,0 +1,10 @@
+@import './a11y/a11y';
+
+@import './typography/typography';
+
+// Mixin that renders all of the core styles that are not theme-dependent.
+@mixin mat-core($typography-config: null) {
+    @include create-typography($typography-config);
+    @include a11y();
+
+}

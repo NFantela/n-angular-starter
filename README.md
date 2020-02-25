@@ -9,8 +9,16 @@ demo badge directive must have their own .scss files inside their modules like _
 -- theme scss files contain 2 mixins 1 for element and 1 for its typography e.g.
 @mixin demo-badge-theme($theme) // $theme is colors
 @mixin demo-badge-typography($config) 
----------------------------------------------
-# TYPOGRAPHY
-scss / typography
---typp-utils.scss - utility functions for fetching font specific data from config and genereting font css
---- # TYPOGRAPHY CONFIG - via mat-typography-config() fn
+-- additionaly it may containt optional mixins that must be included in main 2 above
+========================================
+==================
+# 1 TYPOGRAPHY
+--- typo_utils (functions) --> typo_config (creates config & starting css) --> _typography create-typography($config: null) 
+
+=========================================
+# 2 ACCESIBILITY a11y
+=========================================
+
+
+# END - _core.scss
+-- imports above stuff

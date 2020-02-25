@@ -1,0 +1,155 @@
+@import 'typo-utils';
+
+// Represents a typography level
+@function typography-level(
+  $font-size,
+  $line-height: $font-size,
+  $font-weight: 400,
+  $font-family: null,
+  $letter-spacing: null) {
+
+  @return (
+    font-size: $font-size,
+    line-height: $line-height,
+    font-weight: $font-weight,
+    font-family: $font-family,
+    letter-spacing: $letter-spacing
+  );
+}
+
+// creates config with intiial values if none are provided
+@function get-typography-config(
+  $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+  $display-4:     typography-level(102px, 102px, 300, $letter-spacing: -0.05em),
+  $display-3:     typography-level(54px, 54px, 400, $letter-spacing: -0.02em),
+  $display-2:     typography-level(42px, 486x, 400, $letter-spacing: -0.005em),
+  $display-1:     typography-level(34px, 40px, 400),
+  $headline:      typography-level(24px, 32px, 400),
+  $title:         typography-level(20px, 32px, 500),
+  $subheading-2:  typography-level(16px, 28px, 400),
+  $subheading-1:  typography-level(15px, 24px, 400),
+  $body-2:        typography-level(14px, 24px, 500),
+  $body-1:        typography-level(14px, 20px, 400),
+  $caption:       typography-level(12px, 20px, 400),
+  $button:        typography-level(14px, 14px, 500),
+  // Line-height must be unit-less fraction of the font-size.
+  $input:         typography-level(inherit, 1.125, 400)
+) {
+
+  // Declare an initial map with all of the levels.
+  $config: (
+    display-4:      $display-4,
+    display-3:      $display-3,
+    display-2:      $display-2,
+    display-1:      $display-1,
+    headline:       $headline,
+    title:          $title,
+    subheading-2:   $subheading-2,
+    subheading-1:   $subheading-1,
+    body-2:         $body-2,
+    body-1:         $body-1,
+    caption:        $caption,
+    button:         $button,
+    input:          $input,
+  );
+
+  // Loop through the levels and set the `font-family` of the ones that don't have one to the base.
+  // Note that Sass can't modify maps in place, which means that we need to merge and re-assign.
+  @each $key, $level in $config {
+    @if map-get($level, font-family) == null {
+      $new-level: map-merge($level, (font-family: $font-family));
+      $config: map-merge($config, ($key: $new-level));
+    }
+  }
+
+  // Add the base font family to the config.
+  @return map-merge($config, (font-family: $font-family));
+}
+
+// Adds the base typography styles, based on a config.
+// typography-level-to-styles produces e.g. font: $font-weight #{$font-size}/#{$line-height} $font-family;
+@mixin create-base-typography($config, $selector: '.demo-typography') {
+    .demo-h1, .demo-headline, #{$selector} h1 {
+      @include typography-level-to-styles($config, headline);
+      margin: 0 0 16px;
+    }
+  
+    .demo-h2, .demo-title, #{$selector} h2 {
+      @include typography-level-to-styles($config, title);
+      margin: 0 0 16px;
+    }
+  
+    .demo-h3, .demo-subheading-2, #{$selector} h3 {
+      @include typography-level-to-styles($config, subheading-2);
+      margin: 0 0 16px;
+    }
+  
+    .demo-h4, .demo-subheading-1, #{$selector} h4 {
+      @include typography-level-to-styles($config, subheading-1);
+      margin: 0 0 16px;
+    }
+  
+    // Note: the spec doesn't have anything that would correspond to h5 and h6, but we add these for
+    // consistency. The font sizes come from the Chrome user agent styles which have h5 at 0.83em
+    // and h6 at 0.67em.
+    .demo-h5, #{$selector} h5 {
+      @include demo-typography-font-shorthand(
+         // calc is used here to support css variables
+        calc(#{demo-font-size($config, body-1)} * 0.83),
+        demo-font-weight($config, body-1),
+        demo-line-height($config, body-1),
+        demo-font-family($config, body-1)
+      );
+  
+      margin: 0 0 12px;
+    }
+  
+    .demo-h6, #{$selector} h6 {
+      @include demo-typography-font-shorthand(
+         // calc is used here to support css variables
+        calc(#{demo-font-size($config, body-1)} * 0.67),
+        demo-font-weight($config, body-1),
+        demo-line-height($config, body-1),
+        demo-font-family($config, body-1)
+      );
+  
+      margin: 0 0 12px;
+    }
+  
+    .demo-body-strong, .demo-body-2 {
+      @include typography-level-to-styles($config, body-2);
+    }
+  
+    .demo-body, .demo-body-1, #{$selector} {
+      @include typography-level-to-styles($config, body-1);
+  
+      p {
+        margin: 0 0 12px;
+      }
+    }
+  
+    .demo-small, .demo-caption {
+      @include typography-level-to-styles($config, caption);
+    }
+  
+    .demo-display-4, #{$selector} .demo-display-4 {
+      @include typography-level-to-styles($config, display-4);
+      margin: 0 0 56px;
+    }
+  
+    .demo-display-3, #{$selector} .demo-display-3 {
+      @include typography-level-to-styles($config, display-3);
+      margin: 0 0 64px;
+    }
+  
+    .demo-display-2, #{$selector} .demo-display-2 {
+      @include typography-level-to-styles($config, display-2);
+      margin: 0 0 64px;
+    }
+  
+    .demo-display-1, #{$selector} .demo-display-1 {
+      @include typography-level-to-styles($config, display-1);
+      margin: 0 0 64px;
+    }
+}
+  

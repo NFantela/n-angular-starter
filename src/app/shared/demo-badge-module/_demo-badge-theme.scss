@@ -1,0 +1,11 @@
+@mixin optional-demo-badge-mixin($someVar){}
+
+// main theme mixin that accepts theme colors
+@mixin demo-badge-theme($theme) {
+    // optional additional mixins if any are needed
+    @include optional-demo-badge-mixin(1);
+} 
+// main typography mixin accepting typography config
+@mixin demo-badge-typography($config){
+
+}
