@@ -1,10 +1,25 @@
 @import './a11y/a11y';
 
 @import './typography/typography';
+@import './style/elevation';
 
 // Mixin that renders all of the core styles that are not theme-dependent.
-@mixin mat-core($typography-config: null) {
+@mixin create-core($typography-config: null) {
     @include create-typography($typography-config);
     @include a11y();
+}
 
+// Mixin that renders all of the core styles that depend on the theme (colors).
+@mixin create-core-theme($theme) {
+    // theme specific stuff here e.g. elevation form stuff etc..
+
+    // Provides external CSS classes for each elevation value. Each CSS class is formatted as
+    // `elevation-z$zValue` where `$zValue` corresponds to the z-space to which the element is
+    // elevated.
+    @for $zValue from 0 through 24 {
+      .#{$elevation-prefix}#{$zValue} {
+        @include theme-elevation($zValue, $theme);
+      }
+    }
+  
 }

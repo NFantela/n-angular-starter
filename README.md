@@ -10,6 +10,9 @@ demo badge directive must have their own .scss files inside their modules like _
 @mixin demo-badge-theme($theme) // $theme is colors
 @mixin demo-badge-typography($config) 
 -- additionaly it may containt optional mixins that must be included in main 2 above
+
+# Variables file style/variables.scss
+-- includex breakpoints and animation curves, the colors come from theme
 ========================================
 ==================
 # 1 TYPOGRAPHY
@@ -18,7 +21,11 @@ demo badge directive must have their own .scss files inside their modules like _
 =========================================
 # 2 ACCESIBILITY a11y
 =========================================
-
+-- only hidden class for now
+=========================================
+# 3 THEME
+--- pallette 
+=========================================
 
 # END - _core.scss
 -- imports above stuff
