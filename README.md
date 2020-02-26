@@ -19,6 +19,8 @@ demo badge directive must have their own .scss files inside their modules like _
 
 # Variables file style/variables.scss
 -- includex breakpoints and animation curves, the colors come from theme
+# Coloring elements
+add special classes e.g. color-primary, color-secondary
 ========================================
 ==================
 # 1 TYPOGRAPHY

@@ -162,7 +162,7 @@ $light-theme-background: (
   disabled-list-option: map_get($grey, 200),
   tooltip: map_get($grey, 700),
   body: white,
-  body-color: map_get($grey, 400),
+  body-color: map_get($grey, 800),
 );
 
 // Background palette for dark themes.
@@ -182,7 +182,7 @@ $dark-theme-background: (
   unselected-chip: map_get($grey, 700),
   disabled-list-option: black,
   tooltip: map_get($grey, 700),
-  body: map_get($grey, 800),
+  body: map_get($grey, 900),
   body-color: white,
 );
 // ============= FOREGROUND ========================= //
