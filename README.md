@@ -24,7 +24,11 @@ demo badge directive must have their own .scss files inside their modules like _
 -- only hidden class for now
 =========================================
 # 3 THEME
---- pallette 
+- pallette.scss
+---- contains palletes of colors - generator : http://mcg.mbitson.com/
+---- also contains background / foreground maps for light / dark themes
+- theming.scss
+
 =========================================
 
 # END - _core.scss

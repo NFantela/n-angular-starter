@@ -1,0 +1,73 @@
+@import 'palette';
+
+
+// For a given hue in a palette, return the contrast color from the map of contrast palettes.
+// @param $color-map
+// @param $hue
+@function get-contrast($palette, $hue) {
+  @return map-get(map-get($palette, contrast), $hue);
+}
+// Creates a map of hues to colors for a theme.
+@function create-palette($base-palette, $default: 500, $lighter: 100, $darker: 700, $text: $default) {
+    $result: map_merge($base-palette, (
+      default: map-get($base-palette, $default),
+      lighter: map-get($base-palette, $lighter),
+      darker: map-get($base-palette, $darker),
+      text: map-get($base-palette, $text),
+  
+      default-contrast: get-contrast($base-palette, $default),
+      lighter-contrast: get-contrast($base-palette, $lighter),
+      darker-contrast: get-contrast($base-palette, $darker)
+    ));
+  
+    // For each hue in the palette, add a "-contrast" color to the map.
+    @each $hue, $color in $base-palette {
+      $result: map_merge($result, (
+        '#{$hue}-contrast': get-contrast($base-palette, $hue)
+      ));
+    }
+  
+    @return $result;
+}
+
+@function get-color($palette, $hue: default, $opacity: null) {
+    // If hueKey is a number between zero and one, then it actually contains an
+    // opacity value, so recall this function with the default hue and that given opacity.
+    @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
+      @return get-color($palette, default, $hue);
+    }
+  
+    $color: map-get($palette, $hue);
+  
+    @if (type-of($color) != color) {
+      // If the $color resolved to something different from a color (e.g. a CSS variable),
+      // we can't apply the opacity anyway so we return the value as is, otherwise Sass can
+      // throw an error or output something invalid.
+      @return $color;
+    }
+  
+    @return rgba($color, if($opacity == null, opacity($color), $opacity));
+}
+// Creates a container object for a light theme to be given to individual component theme mixins.
+@function create-light-theme($primary, $accent, $warn: create-palette($danger-red)) {
+    @return (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+      is-dark: false,
+      foreground: light-theme-foreground,
+      background: light-theme-background,
+    );
+}
+  
+// Creates a container object for a dark theme to be given to individual component theme mixins.
+@function create-dark-theme($primary, $accent, $warn: create-palette($danger-red)) {
+    @return (
+        primary: $primary,
+        accent: $accent,
+        warn: $warn,
+        is-dark: true,
+        foreground: dark-theme-foreground,
+        background: dark-theme-background,
+    );
+}

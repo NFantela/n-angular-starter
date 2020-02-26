@@ -1,3 +1,4 @@
+@import './normalize-reset/normalize';
 @import './a11y/a11y';
 
 @import './typography/typography';
@@ -5,6 +6,7 @@
 
 // Mixin that renders all of the core styles that are not theme-dependent.
 @mixin create-core($typography-config: null) {
+    @include normalize();
     @include create-typography($typography-config);
     @include a11y();
 }
