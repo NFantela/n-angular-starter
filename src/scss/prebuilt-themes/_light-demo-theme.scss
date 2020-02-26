@@ -4,7 +4,7 @@
 @import '../theme/theming';
 
 // Include non-theme styles for core (normalize, typography etc...)
-@mixin dark-theme(){
+@mixin light-theme(){
     @include create-core();
 
     // Define a theme.
