@@ -68,24 +68,24 @@
 
 // Adds the base typography styles, based on a config.
 // typography-level-to-styles produces e.g. font: $font-weight #{$font-size}/#{$line-height} $font-family;
-@mixin create-base-typography($config, $selector: '.demo-typography') {
+@mixin create-base-typography($typoConfig, $selector: '.demo-typography') {
     .demo-h1, .demo-headline, #{$selector} h1 {
-      @include typography-level-to-styles($config, headline);
+      @include typography-level-to-styles($typoConfig, headline);
       margin: 0 0 16px;
     }
   
     .demo-h2, .demo-title, #{$selector} h2 {
-      @include typography-level-to-styles($config, title);
+      @include typography-level-to-styles($typoConfig, title);
       margin: 0 0 16px;
     }
   
     .demo-h3, .demo-subheading-2, #{$selector} h3 {
-      @include typography-level-to-styles($config, subheading-2);
+      @include typography-level-to-styles($typoConfig, subheading-2);
       margin: 0 0 16px;
     }
   
     .demo-h4, .demo-subheading-1, #{$selector} h4 {
-      @include typography-level-to-styles($config, subheading-1);
+      @include typography-level-to-styles($typoConfig, subheading-1);
       margin: 0 0 16px;
     }
   
@@ -93,35 +93,35 @@
     // consistency. The font sizes come from the Chrome user agent styles which have h5 at 0.83em
     // and h6 at 0.67em.
     .demo-h5, #{$selector} h5 {
-      @include demo-typography-font-shorthand(
+      @include typography-font-shorthand(
          // calc is used here to support css variables
-        calc(#{demo-font-size($config, body-1)} * 0.83),
-        demo-font-weight($config, body-1),
-        demo-line-height($config, body-1),
-        demo-font-family($config, body-1)
+        calc(#{get-font-size($typoConfig, body-1)} * 0.83),
+        get-font-weight($typoConfig, body-1),
+        get-line-height($typoConfig, body-1),
+        get-font-family($typoConfig, body-1)
       );
   
       margin: 0 0 12px;
     }
   
     .demo-h6, #{$selector} h6 {
-      @include demo-typography-font-shorthand(
+      @include typography-font-shorthand(
          // calc is used here to support css variables
-        calc(#{demo-font-size($config, body-1)} * 0.67),
-        demo-font-weight($config, body-1),
-        demo-line-height($config, body-1),
-        demo-font-family($config, body-1)
+        calc(#{get-font-size($typoConfig, body-1)} * 0.67),
+        get-font-weight($typoConfig, body-1),
+        get-line-height($typoConfig, body-1),
+        get-font-family($typoConfig, body-1)
       );
   
       margin: 0 0 12px;
     }
   
     .demo-body-strong, .demo-body-2 {
-      @include typography-level-to-styles($config, body-2);
+      @include typography-level-to-styles($typoConfig, body-2);
     }
   
     .demo-body, .demo-body-1, #{$selector} {
-      @include typography-level-to-styles($config, body-1);
+      @include typography-level-to-styles($typoConfig, body-1);
   
       p {
         margin: 0 0 12px;
@@ -129,26 +129,26 @@
     }
   
     .demo-small, .demo-caption {
-      @include typography-level-to-styles($config, caption);
+      @include typography-level-to-styles($typoConfig, caption);
     }
   
     .demo-display-4, #{$selector} .demo-display-4 {
-      @include typography-level-to-styles($config, display-4);
+      @include typography-level-to-styles($typoConfig, display-4);
       margin: 0 0 56px;
     }
   
     .demo-display-3, #{$selector} .demo-display-3 {
-      @include typography-level-to-styles($config, display-3);
+      @include typography-level-to-styles($typoConfig, display-3);
       margin: 0 0 64px;
     }
   
     .demo-display-2, #{$selector} .demo-display-2 {
-      @include typography-level-to-styles($config, display-2);
+      @include typography-level-to-styles($typoConfig, display-2);
       margin: 0 0 64px;
     }
   
     .demo-display-1, #{$selector} .demo-display-1 {
-      @include typography-level-to-styles($config, display-1);
+      @include typography-level-to-styles($typoConfig, display-1);
       margin: 0 0 64px;
     }
 }

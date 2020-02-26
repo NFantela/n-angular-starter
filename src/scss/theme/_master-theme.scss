@@ -1,0 +1,10 @@
+// collect all theming options from core and all other modules e.g. demo-bage
+@import '../core';
+
+@import '../../app/shared/demo-badge-module/demo-badge-theme';
+
+// Create a theme.
+@mixin create-master-theme($theme) {
+    @include create-core-theme($theme);
+    @include demo-badge-theme($theme);
+}

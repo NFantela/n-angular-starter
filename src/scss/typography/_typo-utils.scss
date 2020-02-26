@@ -4,27 +4,27 @@
 }
   
 // Fetches the font size for a level inside a typography config.
-@function font-size($config, $mapKey) {
+@function get-font-size($config, $mapKey) {
     @return get-type-value($config, $mapKey, font-size);
 }
 
 // Fetches the line height for a level inside a typography config.
-@function line-height($config, $mapKey) {
+@function get-line-height($config, $mapKey) {
     @return get-type-value($config, $mapKey, line-height);
 }
 
 // Fetches the font weight for a level inside a typography config.
-@function font-weight($config, $mapKey) {
+@function get-font-weight($config, $mapKey) {
     @return get-type-value($config, $mapKey, font-weight);
 }
 
 // Fetches the letter spacing for a level inside a typography config.
-@function letter-spacing($config, $mapKey) {
+@function get-letter-spacing($config, $mapKey) {
     @return get-type-value($config, $mapKey, letter-spacing);
 }
 
 // Fetches the font-family from a typography config and removes the quotes around it.
-@function font-family($config, $mapKey: null) {
+@function get-font-family($config, $mapKey: null) {
     $font-family: map-get($config, font-family);
 
     @if $mapKey != null {
@@ -64,12 +64,12 @@
 
 // Converts a typography level into CSS styles.
 @mixin typography-level-to-styles($config, $mapKey) {
-    $font-size: font-size($config, $mapKey);
-    $font-weight: font-weight($config, $mapKey);
-    $line-height: line-height($config, $mapKey);
-    $font-family: font-family($config, $mapKey);
+    $font-size: get-font-size($config, $mapKey);
+    $font-weight: get-font-weight($config, $mapKey);
+    $line-height: get-line-height($config, $mapKey);
+    $font-family: get-font-family($config, $mapKey);
 
     @include typography-font-shorthand($font-size, $font-weight, $line-height, $font-family);
-    letter-spacing: letter-spacing($config, $mapKey);
+    letter-spacing: get-letter-spacing($config, $mapKey);
 }
   

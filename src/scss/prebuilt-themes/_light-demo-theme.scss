@@ -1,0 +1,27 @@
+@import '../theme/master-theme';
+@import '../core';
+@import '../theme/palette';
+@import '../theme/theming';
+
+// Include non-theme styles for core (normalize, typography etc...)
+@mixin dark-theme(){
+    @include create-core();
+
+    // Define a theme.
+    $primary: create-color-palette($aqua, 700, 500, 800);
+    $accent:  create-color-palette($purple, A200, A100, A400);
+    
+
+    //  @return (
+    //     primary: $primary,
+    //     accent: $accent,
+    //     warn: $warn,
+    //     is-dark: false,
+    //     foreground: $light-theme-foreground,
+    //     background: $light-theme-background,
+    //   );
+    $theme: create-light-theme($primary, $accent);
+    
+    // Include all theme styles for the components.
+    @include create-master-theme($theme);
+}

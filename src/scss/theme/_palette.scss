@@ -46,33 +46,33 @@ $danger-red: (
 );
 
 $aqua: (
-    50 : #e5f4f3,
-    100 : #bee4e1,
-    200 : #93d3cd,
-    300 : #67c1b8,
-    400 : #47b3a9,
-    500 : #26a69a,
-    600 : #229e92,
-    700 : #1c9588,
-    800 : #178b7e,
-    900 : #0d7b6c,
-    A100 : #adfff3,
-    A200 : #7affec,
-    A400 : #47ffe4,
-    A700 : #2dffe0,
+  50: #efebe9,
+  100: #d7ccc8,
+  200: #bcaaa4,
+  300: #a1887f,
+  400: #8d6e63,
+  500: #795548,
+  600: #6d4c41,
+  700: #5d4037,
+  800: #4e342e,
+  900: #3e2723,
+  A100: #d7ccc8,
+  A200: #bcaaa4,
+  A400: #8d6e63,
+  A700: #5d4037,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
     500: $light-primary-text,
     600: $light-primary-text,
     700: $light-primary-text,
     800: $light-primary-text,
     900: $light-primary-text,
     A100: $dark-primary-text,
-    A200: $light-primary-text,
+    A200: $dark-primary-text,
     A400: $light-primary-text,
     A700: $light-primary-text,
   )
@@ -145,7 +145,7 @@ $grey: (
 );
 // ============= BACKGROUND ========================= //
 // Background palette for light themes.
-$ight-theme-background: (
+$light-theme-background: (
   status-bar: map_get($grey, 300),
   app-bar:    map_get($grey, 100),
   background: map_get($grey, 50),
@@ -161,6 +161,8 @@ $ight-theme-background: (
   unselected-chip: map_get($grey, 300),
   disabled-list-option: map_get($grey, 200),
   tooltip: map_get($grey, 700),
+  body: white,
+  body-color: map_get($grey, 400),
 );
 
 // Background palette for dark themes.
@@ -180,10 +182,12 @@ $dark-theme-background: (
   unselected-chip: map_get($grey, 700),
   disabled-list-option: black,
   tooltip: map_get($grey, 700),
+  body: map_get($grey, 800),
+  body-color: white,
 );
 // ============= FOREGROUND ========================= //
 // Foreground palette for light themes.
-$ight-theme-foreground: (
+$light-theme-foreground: (
   base:              black,
   divider:           $dark-dividers,
   dividers:          $dark-dividers,

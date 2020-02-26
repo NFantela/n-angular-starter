@@ -1,0 +1,8 @@
+@mixin starterStyles($theme){
+    $background: map-get($theme, background);
+
+    body{
+        background-color: map-get($background, body);
+        color:map-get($background, body-color);
+    }
+}

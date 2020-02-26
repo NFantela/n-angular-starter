@@ -1,6 +1,12 @@
 ===========================================
 # !!!!!!!!!!!!!! SCSS SETUP !!!!!!!!!!!!!!
 ===========================================
+# WORKFLOW
+- create scss file in file folder e.g. demo badge
+- it has 2 mixins {name}-theme($theme) and {name}-typography($typoConfig)
+- import theme mixin in _master-theme.scss 
+- import typography mixin in _typography.scss
+===========================================
 # Directive scss importing
 - Components have their own scss files hovewer directives e.g.
 demo badge directive must have their own .scss files inside their modules like _demo-badge.scss and are loaded in main theme file in the end.
