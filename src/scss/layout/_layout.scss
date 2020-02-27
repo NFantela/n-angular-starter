@@ -1,0 +1,80 @@
+@import '../helpers/helpers';
+@import '../style/variables';
+@import '../style/extends';
+
+// Grid and media queries
+$gridVariables: (
+    g-col-width        : 65px,
+    g-gutter-width     : 20px,
+    g-col-count        : 12, // default 12 columns
+    g-cont-max-w       : 1050px
+);
+
+// establish a base context width
+// accepts $gridVariables vals
+// will be used in loop that iterates trough each column
+@function grid-context($col-width, $g-col-count, $gutter-width){
+    // multiply width * count + total gutter widht * columns num - 1 cuz 1 less gutter on end
+    $g-context: ($col-width * $g-col-count) + ($gutter-width  * ($g-col-count - 1));
+    @return $g-context; 
+}
+
+@mixin generateGrid(){
+    
+    .grid {
+        @extend .centered; // from _extends.scss
+        width:90%;
+        display: flex;
+        flex-wrap: wrap;
+        // styles for nestable grid
+        // Make nested grid 100%
+        // This selector will target grid containers inside columns
+        [class*="grid__col--"] > & {
+            width:100%;
+        }
+        // Set a max width for grid container
+        @media(min-width:1100px){
+            max-width: map-get($gridVariables, g-cont-max-w);
+        }
+    }
+    
+    @media(min-width: 769px){
+        // Loop and calculate grid columns
+        @for $i from 1 through map-get($gridVariables, g-col-count) {
+            $context : grid-context(
+                map-get($gridVariables, g-col-width), 
+                map-get($gridVariables, g-col-count),
+                map-get($gridVariables, g-gutter-width)
+            ) !global; // GLOBAL flag means this variables will be acccesible outside of this scope
+            $target : (map-get($gridVariables, g-col-width) * $i) + (map-get($gridVariables, g-gutter-width) *($i - 1));
+
+            // Generate column modifier classes
+            .grid__col--#{$i} {
+                width: percentage($target / $context);
+            }
+    
+        }
+    }
+    
+    // Column styles
+    // target all classes beggining with grid__col--
+    [class^="grid__col--"]  {
+        
+        @media(min-width: 1px) and (max-width: 768px){
+            margin-top: em(12px);
+            margin-bottom: em(12px);
+        }
+        @media(min-width: 769px){
+            // set margin on all but first
+            & + & {
+                // $context is accesible due to !global flag
+               margin-left: percentage(map-get($gridVariables, g-gutter-width) / $context);
+            }
+            min-height: 1px;
+            padding-left: em(10px);
+            padding-right: em(10px);
+        }
+    
+    }
+}
+

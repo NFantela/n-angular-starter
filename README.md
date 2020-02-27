@@ -38,6 +38,12 @@ add special classes e.g. color-primary, color-secondary
 - theming.scss
 
 =========================================
+# HELPERS 
+ e.g. @function em() // converts to em values uses fixed font size as 2nd argument found in variables.scss
+=========================================
+# LAYOUT
+
+=========================================
 
 # END - _core.scss
 -- imports above stuff

@@ -1,5 +1,6 @@
 @import './normalize-reset/normalize';
 @import './a11y/a11y';
+@import './layout/layout';
 
 @import './typography/typography';
 @import './style/elevation';
@@ -10,6 +11,7 @@
     @include normalize();
     @include create-typography($typography-config);
     @include a11y();
+    @include generateGrid(); // generate columns grid
 }
 
 // Mixin that renders all of the core styles that depend on the theme (colors).
