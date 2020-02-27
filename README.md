@@ -42,7 +42,15 @@ add special classes e.g. color-primary, color-secondary
  e.g. @function em() // converts to em values uses fixed font size as 2nd argument found in variables.scss
 =========================================
 # LAYOUT
-
+-- we have container class defined and it is sufficient to use media-queries($break) mixin from _media-queries 
+inside elements css e.g.
+section {
+    // using media queries inside css selectors
+    @include media-queries(large){
+        width: 33%;
+        display:inline-block;
+    }
+}
 =========================================
 
 # END - _core.scss

@@ -1,0 +1,20 @@
+@import '../style/variables';
+
+@mixin media-queries($break){
+    @if $break == 'small' {
+        @media(min-width: map-get($mediaQueriesBreakpoints, breakpoint-sm)) 
+        and (max-width: map-get($mediaQueriesBreakpoints, breakpoint-md)) {
+                @content;
+        }
+    } @else if $break == 'medium'{
+        @media(min-width: map-get($mediaQueriesBreakpoints, breakpoint-md) + 1) {
+            @content;
+        }
+    } @else if $break == 'large'{
+        @media(min-width: map-get($mediaQueriesBreakpoints, breakpoint-lg)) {
+            @content;
+        }
+    } @else {
+        @error "Whoops! No breakpoint could be matched for `#{$break}` !";
+    }
+}

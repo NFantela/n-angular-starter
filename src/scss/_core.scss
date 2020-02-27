@@ -11,7 +11,7 @@
     @include normalize();
     @include create-typography($typography-config);
     @include a11y();
-    @include generateGrid(); // generate columns grid
+    @include createLayoutClasses();
 }
 
 // Mixin that renders all of the core styles that depend on the theme (colors).

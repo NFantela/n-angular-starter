@@ -2,9 +2,10 @@
 $base__font-size : 16px;
 
 $mediaQueriesBreakpoints:(
-
+    breakpoint-sm    : 1px,
+    breakpoint-md    : 768px,
+    breakpoint-lg    : 1100px
 );
-
 
 $z-index-fab: 20 !default;
 $z-index-drawer: 100 !default;

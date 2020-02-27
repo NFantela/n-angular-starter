@@ -1,0 +1,9 @@
+@import '../../scss/layout/media-queries';
+
+section {
+    // using media queries inside css selectors
+    @include media-queries(large){
+        width: 33%;
+        display:inline-block;
+    }
+}
