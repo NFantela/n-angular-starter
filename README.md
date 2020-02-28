@@ -23,15 +23,12 @@ demo badge directive must have their own .scss files inside their modules like _
 # Variables file style/variables.scss
 -- includex breakpoints and animation curves, the colors come from theme
 # Coloring elements
-add special classes e.g. color-primary, color-secondary
+-- add special classes e.g. color-primary, color-secondary
 ========================================
-==================
 # 1 TYPOGRAPHY
 --- typo_utils (functions) --> typo_config (creates config & starting css) --> _typography create-typography($config: null) 
-
 =========================================
 # 2 ACCESIBILITY a11y
-=========================================
 -- only hidden class for now
 =========================================
 # 3 THEME
@@ -42,12 +39,13 @@ add special classes e.g. color-primary, color-secondary
 
 =========================================
 # HELPERS 
- e.g. @function em() // converts to em values uses fixed font size as 2nd argument found in variables.scss
+-- e.g. @function em() // converts to em values uses fixed font size as 2nd argument found in variables.scss
 =========================================
 # LAYOUT
 -- we have container class defined and it is sufficient to use media-queries($break) mixin from _media-queries 
 inside elements css e.g.
-section {
+
+-- section {
     // using media queries inside css selectors
     @include media-queries(large){
         width: 33%;
@@ -55,7 +53,6 @@ section {
     }
 }
 =========================================
-
 # END - _core.scss
 -- imports above stuff
 -- prebuilt-themes - this ones we can include in styles.scss 
