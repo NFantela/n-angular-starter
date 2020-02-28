@@ -149,7 +149,7 @@ $_elevation-prefix: 'elevation-z';
 }
 
 // Applies the elevation to an element in a manner that allows
-// consumers to override it via the Material elevation classes.
+// consumers to override it via the elevation classes.
 @mixin overridable-elevation(
     $zValue,
     $color: $elevation-color,

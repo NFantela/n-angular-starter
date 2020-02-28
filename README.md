@@ -6,6 +6,9 @@
 - it has 2 mixins {name}-theme($theme) and {name}-typography($typoConfig)
 - import theme mixin in _master-theme.scss 
 - import typography mixin in _typography.scss
+
+<h3>Edit colors in theme/palette.scss</h3>
+<h3>Edit typography in typography/typo-config.scss</h3>
 ===========================================
 # Directive scss importing
 - Components have their own scss files hovewer directives e.g.

@@ -1,9 +1,15 @@
 @import '../../scss/layout/media-queries';
+@import '../../scss/helpers/helpers';
 
 section {
     // using media queries inside css selectors
     @include media-queries(large){
         width: 33%;
         display:inline-block;
+    }
+    // give some space for z classes
+    [class^="elevation-z"]{
+        padding: em(10px);
+        margin-bottom: em(8px);
     }
 }
